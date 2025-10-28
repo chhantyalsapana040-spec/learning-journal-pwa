@@ -1,0 +1,286 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 8px 16px;
+  transition: color 0.2s ease;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+.nav-links a.active {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.hero strong {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.hero em {
+  color: #1a1a1a;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* About Section */
+.about-section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  border: 1px solid #e5e5e5;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.about-section p {
+  font-size: 1.05rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  text-align: left;
+}
+
+/* Projects Section */
+.projects-section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.projects-section h2 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.project-card {
+  background-color: #fafafa;
+  border-radius: 0;
+  border-left: 2px solid #1a1a1a;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateX(4px);
+}
+
+.project-card h3 {
+  color: #1a1a1a;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.project-card p {
+  color: #666;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Journal Section */
+.journal-section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.journal-section h2 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.journal-entry {
+  background-color: #fafafa;
+  padding: 2rem;
+  border-radius: 0;
+  border-left: 2px solid #1a1a1a;
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.journal-entry:hover {
+  transform: translateX(4px);
+}
+
+.journal-entry h3 {
+  color: #1a1a1a;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.journal-entry .date {
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.journal-entry p {
+  color: #666;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background-color: #fafafa;
+  border-top: 1px solid #e5e5e5;
+  color: #666;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+footer p {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+.project-img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  display: block;
+  margin: 1rem auto;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .nav-links {
+    justify-content: flex-end;
+    padding-right: 3rem;
+    gap: 1rem;
+  }
+
+  .hero {
+    padding: 7rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .nav-links a {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero,
+  .about-section,
+  .projects-section,
+  .journal-section {
+    padding: 3rem 1.5rem;
+  }
+}
