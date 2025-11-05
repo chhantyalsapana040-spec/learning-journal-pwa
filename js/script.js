@@ -41,3 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", darkModeEnabled ? "dark" : "light");
   });
 });
+
+const dateEl = document.getElementById("date");
+if (dateEl) dateEl.textContent = new Date().toLocaleString();
