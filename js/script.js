@@ -44,3 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const dateEl = document.getElementById("date");
 if (dateEl) dateEl.textContent = new Date().toLocaleString();
+
+//form validation API
+function checkReflection() {
+  let reflection = document.getElementById("reflection");
+
+  if (!reflection.checkValidity()) {
+    alert("Reflection must be at least 10 characters.");
+    return false;
+  } else {
+    alert("Reflection saved successfully!");
+    saveReflection();
+    return false; 
+  }
+}
+
