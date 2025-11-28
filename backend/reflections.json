@@ -1,0 +1,27 @@
+[
+    {
+        "week": "Week 1: Temperature Converter PWA",
+        "reflection": "The focus was building a simple PWA that converts between Celsius, Fahrenheit, and Kelvin. I learned to design a basic app layout and use input fields with real-time updates. The challenge here was getting the conversion logic to work correctly, ensuring responsive design and deploying on PythonAnywhere.",
+        "date": "2025-01-01 10:00"
+    },
+    {
+        "week": "Week 2: Learning Journal PWA",
+        "reflection": "I began by creating the layout of smaller screens initially to ensure that all was readable and understandable on mobile. After it was fine, I used media queries to adapt the layout for larger screens such as tablets and desktop. Flexbox helped maintain alignment and layout control across devices. The most difficult part was spacing, because small padding/margin changes affected both mobile and desktop layouts differently.",
+        "date": "2025-01-08 10:00"
+    },
+    {
+        "week": "Week 3: JavaScript & DOM Manipulation",
+        "reflection": "I used querySelector() and getElementById() because they are simple and flexible. My biggest challenge was that my script loaded before the DOM, which caused features to fail. I solved it using DOMContentLoaded. I used console logs to debug and track issues.",
+        "date": "2025-01-15 10:00"
+    },
+    {
+        "week": "Week 4: Introduction to API",
+        "reflection": "APIs taught me how web apps communicate without a full backend. The hardest part was learning asynchronous JavaScript, fetch, promises and async/await. It helped me design better and more interactive apps.",
+        "date": "2025-01-22 10:00"
+    },
+    {
+        "week": "TOPIC 5 PYTHON & JSON BACKEND DATA",
+        "reflection": "This week I learned how to use Python to write reflections into a JSON file and display them in my PWA. The main challenge was understanding how the backend and frontend connect, but it helped me see how real apps store and load data.",
+        "date": "2025-11-28 21:56"
+    }
+]

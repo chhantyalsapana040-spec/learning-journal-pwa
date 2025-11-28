@@ -10,91 +10,91 @@
 
 <body>
   <header>
-    <nav>
-
-    </nav>
+    <nav></nav>
   </header>
 
   <main>
     <section class="reflection-section">
-    <h2>Reflective Journal</h2>
-  
+      <h2>Reflective Journal</h2>
 
-    <form id="myForm" name="myForm" onsubmit="return checkReflection()">
-      <label for="fname">Name:</label><br>
-      <input type="text" id="fname" name="fname" required><br><br>
+      <form id="myForm" name="myForm" onsubmit="return checkReflection()">
+        <label for="fname">Week Title:</label><br>
+        <input type="text" id="fname" name="fname" required><br><br>
 
-      <label for="reflection">Reflection:</label><br>
-      <textarea id="reflection" name="reflection" minlength="10" required
-        placeholder="What did you learn this week? What did you find challenging?"></textarea><br><br>
+        <label for="reflection">Reflection:</label><br>
+        <textarea id="reflection" name="reflection" minlength="10" required
+          placeholder="What did you learn this week? What did you find challenging?"></textarea><br><br>
 
-      <input type="submit" value="Submit">
-      <input type="reset" value="Reset">
-      <input type="button" value="Clear All" onclick="clearAll()">
-    </form>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+        <input type="button" value="Clear All" onclick="clearAll()">
+      </form>
 
-    <h2>Previous Reflections</h2>
-    <div id="viewAll"></div>
-  </section>
+      <h3>Total Reflections: <span id="reflectionCount">0</span></h3>
+
+      <h2>Previous Reflections</h2>
+      <div id="viewAll"></div>
+    </section>
+
     <section class="journal-section">
       <h1>Weekly Journal</h1>
-
-      <!-- Week 1 Entry -->
-      <article class="journal-entry">
-        <h2>Week 1: Temperature Converter PWA</h2>
-        <p>The focus was building a simple PWA that converts between Celsius, Fahrenheit, and Kelvin. I learned to
-          design a basic app layout and use input fields with real-time updates. The challenge here was getting the
-          conversion logic to work correctly, ensuring responsive design and deploying on PythonAnywhere.</p>
-      </article>
-
-      <!-- Week 2 Entry -->
-      <article class="journal-entry">
-        <h2>Wek 2: Learning Journal PWA</h2>
-        <p><strong>How did you approach mobile-first design?</strong><br>
-          I began by creating the layout of smaller screens initially to ensure that all was readable and understandable
-          on mobile. After it was fine there I put in media queries in order to modify the layout to bigger screens such
-          as tablets and desktop.</p>
-
-        <p><strong>What was the most useful HTML or CSS concept you applied this week?</strong><br>
-          The most beneficial concept was flexbox. It also simplified the process of aligning things and developing a
-          clean navigation bar and made the layout to be flexible across multiple screen sizes.</p>
-
-        <p><strong>What part of HTML or CSS did you find most challenging or confusing?</strong><br>
-          The hardest task was maintaining the distance and laying of both mobile and desktop screens. The slightest
-          modification of padding or margins tended to have a different impact on each device.</p>
-      </article>
-      <!-- Week 3 entry -->
-      <article class="journal-entry">
-        <h2>Week 3: JavaScript & DOM Manipulation</h2>
-
-        <p><strong>Which DOM selection methods did you use, and why?</strong><br>
-          I used <code>querySelector()</code> and <code>getElementById()</code> because they are simple and flexible for
-          selecting single or multiple elements. They let me dynamically insert my navigation menu and attach the theme
-          toggle event listener.</p>
-
-        <p><strong>What was the most challenging part about linking JavaScript with HTML?</strong><br>
-          Initially, my script loaded before the DOM elements were created, so the toggle button didn’t work. Wrapping
-          my code inside <code>DOMContentLoaded</code> solved the issue.</p>
-
-        <p><strong>How did you test and debug your JavaScript code?</strong><br>
-          I used the browser console to check for errors and printed logs to verify that elements were found and event
-          listeners fired correctly. This made debugging quick and visual.</p>
-      </article>
-      <!-- Week 4 entry -->
-      <article class="journal-entry">
-        <h2>Week 3: Introduction to API</h2>
-
-        <p>The experience with APIs taught me that web applications can communicate and handle data without a complete back-end server. The hardest aspect was to learn about asynchronous behavior in JavaScript and particularly in terms of fetch and processing responses with promises or using async/await. I also got to know how to create superior user experiences by filtering inputs prior to the storage or transmission of data. Overall, this week helped me become more competent in creating interactive and data-based applications and understand how PWAs can be used both online and offline..</p>
-
-      
-      </article>
+      <p>Your weekly reflections from JSON appear above. These entries below can now be removed since they are fully stored inside reflections.json.</p>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Sapana Chhantyal | University for the Creative Arts</p>
   </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // --- LOAD REFLECTIONS FROM JSON ---
+    fetch("backend/reflections.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("viewAll");
+        const counter = document.getElementById("reflectionCount");
+
+        counter.textContent = data.length; // Set reflection count
+
+        data.forEach(entry => {
+          const div = document.createElement("div");
+          div.classList.add("reflection-card");
+
+          div.innerHTML = `
+            <h3>${entry.week}</h3>
+            <p><em>${entry.date}</em></p>
+            <p>${entry.reflection}</p>
+            <hr>
+          `;
+
+          container.appendChild(div);
+        });
+      });
+
+ 
+    window.checkReflection = function () {
+      const week = document.getElementById("fname").value.trim();
+      const reflection = document.getElementById("reflection").value.trim();
+
+      if (week === "" || reflection.length < 10) {
+        alert("Please enter a valid week title and a reflection of at least 10 characters.");
+        return false;
+      }
+
+      alert("To save a reflection, run save_entry.py (this form does not save JSON).");
+      return false;
+    };
+
+   
+    window.clearAll = function () {
+      document.getElementById("fname").value = "";
+      document.getElementById("reflection").value = "";
+    };
+
+  });
+</script>
+
 </body>
-<script src="./js/script.js"></script>
-<script src="./js/formapi.js"></script>
 </html>
