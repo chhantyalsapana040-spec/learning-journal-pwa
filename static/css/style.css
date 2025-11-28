@@ -457,3 +457,44 @@ body.dark-mode .reflection-card b {
 body.dark-mode .reflection-card i {
   color: #ccc;
 }
+
+/* Container styling */
+.reflection-card {
+  background: #ffffff;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* General button styling */
+.reflection-card button {
+  padding: 6px 14px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+/* Edit button style */
+.reflection-card button:nth-child(4) {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.reflection-card button:nth-child(4):hover {
+  background-color: #217dbb;
+}
+
+/* Delete button style */
+.reflection-card button:nth-child(5) {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.reflection-card button:nth-child(5):hover {
+  background-color: #c0392b;
+}
