@@ -43,20 +43,32 @@ The aim of this project is to document my development process, showcase my techn
 ```bash
 git clone https://github.com/chhantyalsapana040-spec/learning-journal-pwa.git
 cd learning-journal-pwa
+```
 
 2. **Install Python dependencies if running locally**
+
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install flask
+```
 
 3. **Run the flask server**
+
+```bash
 export FLASK_APP=flask_app.py  # Windows: set FLASK_APP=flask_app.py
 flask run
+```
 
 **Deployment Link:**
+
+```bash
 PythonAnywhere: https://sapanachhantyal.pythonanywhere.com/
+```
 
 **Project Structure**
+
+```bash
 learning-journal-pwa/
 │
 ├─ static/
@@ -73,6 +85,7 @@ learning-journal-pwa/
 ├─ flask_app.py
 ├─ reflections.json
 └─ README.md
+```
 
 **How it works**
     1. At the end of each week, users complete a reflection form where they can choose to draw or not draw on the Canvas.
