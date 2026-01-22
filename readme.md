@@ -62,9 +62,8 @@ flask run
 
 **Deployment Link:**
 
-```bash
 PythonAnywhere: https://sapanachhantyal.pythonanywhere.com/
-```
+
 
 **Project Structure**
 
