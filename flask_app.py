@@ -71,6 +71,7 @@ def add_reflection():
     new_reflection = {
         "name": data.get("name", "Untitled"),
         "reflection": data.get("reflection", ""),
+        "sketch": data.get("sketch", None),  # store base64
         "date": datetime.now().strftime("%a %b %d %Y")
     }
 
@@ -79,6 +80,7 @@ def add_reflection():
     save_reflections(reflections)
 
     return jsonify(new_reflection), 201
+
 
 #delete individual route
 @app.route("/api/reflections/<int:index>", methods=["DELETE"])
@@ -102,8 +104,10 @@ def edit_reflection(index):
 
     data = request.get_json()
 
+    # Update all fields, including sketch
     reflections[index]["name"] = data.get("name", reflections[index]["name"])
     reflections[index]["reflection"] = data.get("reflection", reflections[index]["reflection"])
+    reflections[index]["sketch"] = data.get("sketch", reflections[index].get("sketch", None))
     reflections[index]["date"] = datetime.now().strftime("%a %b %d %Y")
 
     save_reflections(reflections)

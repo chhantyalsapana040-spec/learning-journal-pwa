@@ -19,17 +19,25 @@
       <h2>Reflective Journal</h2>
 
       <form id="myForm">
-        <label for="fname">Week Title:</label><br>
-        <input type="text" id="fname" name="fname" required><br><br>
+  <label for="fname">Week Title:</label><br>
+  <input type="text" id="fname" name="fname" required><br><br>
 
-        <label for="reflection">Reflection:</label><br>
-        <textarea id="reflection" name="reflection" minlength="10" required
-          placeholder="What did you learn this week? What did you find challenging?"></textarea><br><br>
+  <label for="reflection">Reflection:</label><br>
+  <textarea id="reflection" name="reflection" minlength="10" required
+    placeholder="What did you learn this week? What did you find challenging?"></textarea><br><br>
 
-        <input type="submit" value="Submit">
-        <input type="reset" value="Reset">
-        <input type="button" value="Clear All" onclick="clearAll()">
-      </form>
+  <label for="sketchCanvas">Optional Sketch:</label>
+<div class="canvas-container">
+  <canvas id="sketchCanvas" width="600" height="300"></canvas>
+  <button type="button" id="clearCanvas">Clear Sketch</button>
+</div>
+  <br>
+
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
+  <input type="button" value="Clear All" onclick="clearAll()">
+</form>
+
 
       <h3>Total Reflections: <span id="reflectionCount">0</span></h3>
 
@@ -71,18 +79,18 @@
     counter.textContent = data.length;
 
     data.forEach((entry, index) => {
-      const div = document.createElement("div");
-      div.classList.add("reflection-card");
+  const div = document.createElement("div");
+  div.classList.add("reflection-card");
 
-      div.innerHTML = `
-        <h3>${entry.name}</h3>
-        <p><em>${entry.date}</em></p>
-        <p>${entry.reflection}</p>
-
-        <button onclick="editReflection(${index})">Edit</button>
-        <button onclick="deleteReflection(${index})">Delete</button>
-        <hr>
-      `;
+  div.innerHTML = `
+    <h3>${entry.name}</h3>
+    <p><em>${entry.date}</em></p>
+    <p>${entry.reflection}</p>
+    ${entry.sketch ? `<img src="${entry.sketch}" style="max-width:100%; margin-top:10px; border-radius:8px;">` : ""}
+    <button onclick="editReflection(${index})">Edit</button>
+    <button onclick="deleteReflection(${index})">Delete</button>
+    <hr>
+  `;
 
       container.appendChild(div);
     });
@@ -92,25 +100,46 @@
   // SUBMIT / ADD REFLECTION
   // ---------------------------
 
-  async function checkReflection() {
-    const name = document.getElementById("fname").value.trim();
-    const reflection = document.getElementById("reflection").value.trim();
+ async function checkReflection() {
+  const name = document.getElementById("fname").value.trim();
+  const reflection = document.getElementById("reflection").value.trim();
+  const canvas = document.getElementById("sketchCanvas");
+  const ctx = canvas.getContext("2d");
+  const sketchData = canvas ? canvas.toDataURL() : null; // base64 image
 
-    if (name === "" || reflection.length < 10) {
-      alert("Please enter a valid week title and a reflection of at least 10 characters.");
-      return false;
-    }
-
-    await fetch("/api/reflections", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, reflection })
-    });
-
-   document.getElementById("myForm").reset();
-    loadReflections();
+  if (reflection.length < 10) {
+    alert("Reflection must be at least 10 characters long.");
     return false;
   }
+
+  try {
+    const res = await fetch("/api/reflections", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        reflection,
+        sketch: sketchData
+      })
+    });
+
+    if (!res.ok) throw new Error("Failed to save reflection");
+
+    // Reset form and canvas
+    document.getElementById("myForm").reset();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Reload reflections immediately
+    await loadReflections();
+  } catch (err) {
+    console.error(err);
+    alert("Error saving reflection. Please try again.");
+  }
+
+  return false; // prevent default form submission
+}
+
+
 
   // ---------------------------
   // DELETE REFLECTION

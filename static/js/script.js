@@ -87,3 +87,41 @@ if (!navigator.onLine) showBanner("You are offline. Cached content is available.
 // listen for changes
 window.addEventListener("offline", () => showBanner("You are offline. Some features may be limited.", true));
 window.addEventListener("online", () => showBanner("Back online! Content is up to date.", false));
+
+//canvas script
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("sketchCanvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  let drawing = false;
+
+  canvas.addEventListener("mousedown", (e) => {
+    drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+  });
+
+  canvas.addEventListener("mousemove", (e) => {
+    if (!drawing) return;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.strokeStyle = "#2f3d58";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.stroke();
+  });
+
+  canvas.addEventListener("mouseup", () => {
+    drawing = false;
+    ctx.closePath();
+  });
+
+  canvas.addEventListener("mouseleave", () => {
+    drawing = false;
+    ctx.closePath();
+  });
+
+  document.getElementById("clearCanvas").addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+});
