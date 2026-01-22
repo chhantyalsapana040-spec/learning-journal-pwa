@@ -88,20 +88,20 @@ learning-journal-pwa/
 ```
 
 **How it works**
-    -1. At the end of each week, users complete a reflection form where they can choose to draw or not draw on the Canvas.
-    -2. When submitted, the reflection and the sketch (Base64 version) are stored through Flask API in reflections.json.
-    -3. The app automatically loads the Previous Reflections page without reloading the page.
-    -4. It provides offline functionality through service worker caching and localStorage.
-    -5. Users can turn on/off light/dark mode and a reflection counter which tracks user progress.
+- At the end of each week, users complete a reflection form where they can choose to draw or not draw on the Canvas.
+- When submitted, the reflection and the sketch (Base64 version) are stored through Flask API in reflections.json.
+- The app automatically loads the Previous Reflections page without reloading the page.
+- It provides offline functionality through service worker caching and localStorage.
+- Users can turn on/off light/dark mode and a reflection counter which tracks user progress.
 
 License
 This project is for academic purposes at the University for the Creative Arts. © 2026 Sapana Chhantyal.
 
 Acknowledgements
--OpenAI ChatGPT for grammar and paraphrasing assistance
--HTML5 Canvas API documentation
--Flask documentation and tutorials
--UCA library resources for web and mobile development
+- OpenAI ChatGPT for grammar and paraphrasing assistance
+- HTML5 Canvas API documentation
+- Flask documentation and tutorials
+- UCA library resources for web and mobile development
 
 
 
