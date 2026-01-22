@@ -45,3 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
 const dateEl = document.getElementById("date");
 if (dateEl) dateEl.textContent = new Date().toLocaleString();
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/static/js/sw.js")
+    .then(() => console.log("Service Worker Registered"));
+}
+
+// ----- EXTRA FEATURE: Offline/Online banner -----
+function createConnectionBanner() {
+  const banner = document.createElement("div");
+  banner.id = "connection-banner";
+  banner.style.position = "fixed";
+  banner.style.bottom = "0";
+  banner.style.left = "0";
+  banner.style.right = "0";
+  banner.style.padding = "10px";
+  banner.style.textAlign = "center";
+  banner.style.fontWeight = "bold";
+  banner.style.display = "none";
+  banner.style.zIndex = "9999";
+  document.body.appendChild(banner);
+  return banner;
+}
+
+const banner = createConnectionBanner();
+
+function showBanner(message, isOffline) {
+  banner.textContent = message;
+  banner.style.background = isOffline ? "#ffdddd" : "#ddffdd";
+  banner.style.color = "#000";
+  banner.style.display = "block";
+
+  // auto-hide when back online
+  if (!isOffline) {
+    setTimeout(() => (banner.style.display = "none"), 2500);
+  }
+}
+
+// initial state
+if (!navigator.onLine) showBanner("You are offline. Cached content is available.", true);
+
+// listen for changes
+window.addEventListener("offline", () => showBanner("You are offline. Some features may be limited.", true));
+window.addEventListener("online", () => showBanner("Back online! Content is up to date.", false));
